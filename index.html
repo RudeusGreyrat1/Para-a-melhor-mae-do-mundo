@@ -22,6 +22,7 @@
       height: auto;
       border-radius: 10px;
       box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      margin-top: 20px;
     }
     p {
       margin-top: 20px;
@@ -29,10 +30,37 @@
       color: #444;
       max-width: 600px;
     }
+    #contador {
+      font-size: 20px;
+      font-weight: bold;
+      color: #d2691e;
+      margin-bottom: 10px;
+    }
   </style>
 </head>
 <body>
+  <div id="contador">Carregando tempo de amor...</div>
   <img src="5b9b3aa0-d1f0-4134-a66d-11ae025b9fec.png" alt="Feliz Dia das Mães" />
   <p>Mamãe eu te amo muito e fiz este cartão para você, eu sei que eu não posso ser o melhor filho do mundo mais to tentando te agradar :)</p>
+
+  <script>
+    const nascimento = new Date("2011-01-14T00:00:00");
+    function atualizarContador() {
+      const agora = new Date();
+      let diff = agora - nascimento;
+
+      const anos = agora.getFullYear() - nascimento.getFullYear();
+      const dias = Math.floor(diff / (1000 * 60 * 60 * 24)) % 365;
+      const horas = agora.getHours();
+      const minutos = agora.getMinutes();
+      const segundos = agora.getSeconds();
+
+      document.getElementById("contador").textContent =
+        `Eu te amo há ${anos} anos, ${dias} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos.`;
+    }
+
+    setInterval(atualizarContador, 1000);
+    atualizarContador();
+  </script>
 </body>
 </html>
